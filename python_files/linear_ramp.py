@@ -1,8 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from numpy import linalg as LA
+
 
 def protocol(tf,DeltaN):
+###protocol for how spring constant is varied
+
     T1=10; N=(DeltaN*T1); dt=float(T1)/N; 
     a=1.0
     kappa1=a*np.ones(N)
@@ -30,6 +31,7 @@ def protocol(tf,DeltaN):
     
 
 def langevin_dynamics(tf, DeltaN,N_exp):
+###input protocol and then output t,mean_x, mean_x2protocol
     t,kappa=protocol(tf, DeltaN)
     gamma=1.0
     omega=kappa/gamma

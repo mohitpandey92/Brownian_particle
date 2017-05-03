@@ -1,8 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from numpy import linalg as LA
 
 def protocol(tf,DeltaN):
+###protocol for how spring constant is varied
+
     T1=10; N=(DeltaN*T1); dt=float(T1)/N; 
     a=1.0
     kappa1=a*np.ones(N)
@@ -30,6 +31,7 @@ def protocol(tf,DeltaN):
     
 
 def langevin_dynamics(tf, DeltaN,N_exp):
+###input protocol and then output t,mean_x, mean_x2protocol
     t,kappa=protocol(tf, DeltaN)
     gamma=1.0
     omega=kappa/gamma
@@ -39,7 +41,7 @@ def langevin_dynamics(tf, DeltaN,N_exp):
     x=5*np.ones((N_exp,N))
 
     #N=number of steps in a single sim, N_exp=no. of times expt is repeated.
-    
+    dt=1./DeltaN
     rand_kick=np.random.randn(N_exp, N-1)
 
     dx_random=np.sqrt(2*D*dt)*rand_kick
